@@ -5,8 +5,32 @@ function buildAWall(arr) {
   return [wall, ...starred, wall];
 }
 
+function buildAWall2(arr) {
+  let maxLength = arr.reduce((acc, item) => {
+    let max;
+    if (item.length > acc) {
+      max = item.length;
+    } else {
+      max = acc;
+    }
+    return max;
+  }, 0);
+  console.log(maxLength);
+  let wall = new Array(maxLength + 2).fill('*').join('');
+  arr = arr.map((item) => {
+    if (item.length === maxLength) {
+      return `*${item}*`;
+    } else {
+      return item.padStart(maxLength, '*') + '*';
+    }
+  });
+  return [wall, ...arr, wall];
+}
+
 console.log(buildAWall(['abc', 'def']));
 console.log(buildAWall(['abcd', 'defd']));
+console.log(buildAWall2(['abcde', 'defd']));
+console.log(buildAWall2(['abcd', 'defdgh']));
 
 // add  digits
 function addDigits(num) {
