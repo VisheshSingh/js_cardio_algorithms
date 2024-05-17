@@ -21,5 +21,18 @@ function flatten2(arr) {
   return newArr.reverse();
 }
 
+function flatten3(arr) {
+  let flat = [];
+  arr.forEach((item) => {
+    if (Array.isArray(item)) {
+      flat.push(...flatten3(item));
+    } else {
+      flat.push(item);
+    }
+  });
+  return flat;
+}
+
 console.log(flatten1([1, [2, [3, [4]], 5]]));
 console.log(flatten2([1, [2, [3, [4]], 5]]));
+console.log(flatten3([1, [2, [3, [4]], 5]]));
